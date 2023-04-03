@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_06a6cf28d7d446d7a5bb2183bc119e1b }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_f3fa453044e04545b23832e6d0542bb4 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_023e9964b63f436cba5d4e5f3db0ec6e }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_e48994e03bde457a9a24bc37d36850c0 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_06a6cf28d7d446d7a5bb2183bc119e1b }}/makeaieasy/chatgpt-next-webe:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_023e9964b63f436cba5d4e5f3db0ec6e }}/chatgpt-next-webe:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'uigpt'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6144ab1f0b4341ebb59eb2334ced739e }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_06a6cf28d7d446d7a5bb2183bc119e1b }}/makeaieasy/chatgpt-next-webe:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_eb253bc97d314838be707ebffbfc8e13 }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_023e9964b63f436cba5d4e5f3db0ec6e }}/chatgpt-next-webe:${{ github.sha }}'
