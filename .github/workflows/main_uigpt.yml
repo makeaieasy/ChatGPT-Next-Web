@@ -27,10 +27,14 @@ jobs:
         password: ${{ secrets.AzureAppService_ContainerPassword_c3f28573eb6b4ba58402d4a85e05bba5 }}
 
     - name: Build and push container image to registry
+      env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       uses: docker/build-push-action@v2
       with:
         push: true
         tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_d2f5001a07a64d3e8e75560ba4d06fc5 }}/makeaieasy/chatgpt-next-webe:${{ github.sha }}
+        build-args: |
+          OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
         file: ./Dockerfile
 
   deploy:
