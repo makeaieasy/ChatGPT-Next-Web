@@ -13,7 +13,7 @@ RUN yarn install
 FROM base AS builder
 
 RUN apk update && apk add --no-cache git
-ARG OPENAI_API_KEY
+
 ENV OPENAI_API_KEY=$OPENAI_API_KEY
 ENV CODE="gpt"
 ARG DOCKER=true
